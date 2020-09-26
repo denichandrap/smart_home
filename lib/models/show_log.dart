@@ -20,51 +20,24 @@ class ShowLog {
   });
 
   int id;
-  KodeGrup kodeGrup;
-  Trigger trigger;
+  String kodeGrup;
+  String trigger;
   DateTime dtArduino;
   DateTime dtServer;
 
   factory ShowLog.fromJson(Map<String, dynamic> json) => ShowLog(
         id: json["id"],
-        kodeGrup: kodeGrupValues.map[json["kode_grup"]],
-        trigger: triggerValues.map[json["trigger"]],
+        kodeGrup: json["kode_grup"],
+        trigger: json["trigger"],
         dtArduino: DateTime.parse(json["dt_arduino"]),
         dtServer: DateTime.parse(json["dt_server"]),
       );
 
   Map<String, dynamic> toJson() => {
         "id": id,
-        "kode_grup": kodeGrupValues.reverse[kodeGrup],
-        "trigger": triggerValues.reverse[trigger],
+        "kode_grup": kodeGrup,
+        "trigger": trigger,
         "dt_arduino": dtArduino.toIso8601String(),
         "dt_server": dtServer.toIso8601String(),
       };
-}
-
-enum KodeGrup { PR010820_0001 }
-
-final kodeGrupValues = EnumValues({"PR010820-0001": KodeGrup.PR010820_0001});
-
-enum Trigger { APP, TOMBOL, SCHEDULE, WEB }
-
-final triggerValues = EnumValues({
-  "app": Trigger.APP,
-  "schedule": Trigger.SCHEDULE,
-  "tombol": Trigger.TOMBOL,
-  "web": Trigger.WEB
-});
-
-class EnumValues<T> {
-  Map<String, T> map;
-  Map<T, String> reverseMap;
-
-  EnumValues(this.map);
-
-  Map<T, String> get reverse {
-    if (reverseMap == null) {
-      reverseMap = map.map((k, v) => new MapEntry(v, k));
-    }
-    return reverseMap;
-  }
 }

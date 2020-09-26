@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smart_home/constants.dart';
 import 'package:smart_home/models/arduino.dart';
 import 'package:smart_home/models/detail_header.dart';
+import 'package:smart_home/models/show_log.dart';
 import 'package:smart_home/share_var.dart';
 
 class RestNode {
@@ -41,6 +42,32 @@ class RestNode {
         final result = detailHeaderFromJson(response.body);
 
         return result;
+      } else {
+        throw Exception("Error");
+      }
+    } catch (e) {
+      // throw Exception(e.toList());
+    }
+  }
+
+  static Future<List<ShowLog>> getLog(
+      String tipe, int start, int lengthlimit) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    String url = 'http://' + prefs.getString('ip');
+
+    try {
+      final response = await http.get(url +
+          ':3003/show_log/' +
+          tipe +
+          '/' +
+          start.toString() +
+          '/' +
+          lengthlimit.toString());
+
+      if (response.statusCode == 200) {
+        final result = showLogFromJson(response.body);
+
+        return result.toList();
       } else {
         throw Exception("Error");
       }

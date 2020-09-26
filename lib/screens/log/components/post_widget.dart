@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:smart_home/models/post.dart';
+import 'package:smart_home/models/show_log.dart';
 
 class PostWidget extends StatelessWidget {
-  final Post post;
+  final ShowLog post;
 
   const PostWidget({Key key, @required this.post}) : super(key: key);
 
@@ -13,9 +13,9 @@ class PostWidget extends StatelessWidget {
         '${post.id}',
         style: TextStyle(fontSize: 10.0),
       ),
-      title: Text(post.title),
+      title: Text(post.kodeGrup),
       isThreeLine: true,
-      subtitle: Text(post.body),
+      subtitle: Text(post.trigger),
       dense: true,
     );
   }
