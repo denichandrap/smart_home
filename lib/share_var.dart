@@ -8,21 +8,12 @@ class shareVar {
 
   Future<String> getStr(key) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    // print('fungsi get');
-    // print(prefs.getString(call));
-    // print('fungsi get end');
     var hasil = prefs.getString(key);
     return hasil;
   }
 
   Future<void> setStr(key, _value) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    // print('fungsi set');
-    // print(ip);
-    // print('fungsi set end');
-
     var hasil = prefs.setString(key, _value);
     return hasil;
   }

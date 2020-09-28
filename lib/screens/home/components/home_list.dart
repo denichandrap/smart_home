@@ -80,7 +80,8 @@ class HomeList extends StatelessWidget {
               // print('open page detail');
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => LogScreen()),
+                MaterialPageRoute(
+                    builder: (context) => LogScreen(tabel: data[index].tabel)),
               );
             }),
       ),

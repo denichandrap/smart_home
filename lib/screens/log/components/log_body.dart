@@ -46,7 +46,7 @@ class _LogBodyState extends State<LogBody> {
             itemBuilder: (BuildContext context, int index) {
               return index >= state.logs.length
                   ? BottomLoader()
-                  : PostWidget(post: state.logs[index]);
+                  : LogWidget(log: state.logs[index]);
             },
             itemCount:
                 state.hasReachedMax ? state.logs.length : state.logs.length + 1,
